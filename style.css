@@ -11,8 +11,21 @@ body {
     height: 100vh;
     display: flex;
     background-color: aqua;
+    position: relative;
 }
-  
+
+.counter {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.counter > p {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
 .board {
     width: 1200px;
     height: 700px;

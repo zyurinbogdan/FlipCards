@@ -1,59 +1,44 @@
 const cards = document.querySelectorAll('.cards');
 
-let flippedCard = false;
-let secondFlippedCard = false;
 let firstCard;
 let secondCard;
-let thirdCard;
 let blockBoard = false;
 let counter = 0;
 
-function flipCard () {
-    if (blockBoard) {
-        return;
+function setFlippedCard (targetCard) {
+    let countOfFlippedCards = document.getElementsByClassName('flip').length;
+
+    targetCard.classList.add('flip');
+
+    if (countOfFlippedCards === 0) {
+        firstCard = targetCard;
+    } else if (countOfFlippedCards === 1) {
+        secondCard = targetCard;
+    } else if (countOfFlippedCards = 2) {
+        unFlipCards();
+        firstCard = targetCard;
     }
 
-    if (this === firstCard) {
-        return;
-    }
-
-    this.classList.add('flip');
-
-    if (!flippedCard) {
-        flippedCard = true;
-        firstCard = this;
-    } else {
-        secondCard = this;
-        flippedCard = false;
-        checkForMatch();
-    }
+    
 
 }
 
 function checkForMatch () {
-    if (firstCard.dataset.card === secondCard.dataset.card) {
+    let countOfFlippedCards = document.getElementsByClassName('flip').length;
+    if (firstCard.dataset.card === secondCard.dataset.card && countOfFlippedCards === 2) {
         blockCards();
-    } else {
-        unFlipCards();
     }
 }
 
 function blockCards () {
-    firstCard.removeEventListener('click', flipCard);
-    secondCard.removeEventListener('click', flipCard);
+    firstCard.remove();
+    secondCard.remove();
     
 }
 
 function unFlipCards () {
-    blockBoard = true;
-
-    setTimeout(() => {
-        firstCard.classList.remove('flip');
-        secondCard.classList.remove('flip');
-        blockBoard = false;
-    }, 1000)
-
-    
+    firstCard.classList.remove('flip');
+    secondCard.classList.remove('flip'); 
 }
 
 (function shuffle () {
@@ -63,5 +48,10 @@ function unFlipCards () {
     });
 })();
 
-cards.forEach(card => card.addEventListener('click', flipCard));
+function cardClickHandler () {
+    setFlippedCard(this);
+    checkForMatch();
+}
+
+cards.forEach(card => card.addEventListener('click', cardClickHandler));
 
