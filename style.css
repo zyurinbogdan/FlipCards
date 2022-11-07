@@ -20,7 +20,7 @@ body {
     left: 10px;
 }
 
-.counter > p {
+#counter > p {
     text-align: center;
     font-size: 30px;
     font-weight: bold;
@@ -66,4 +66,50 @@ body {
 
 .front_face {
     transform: rotateY(180deg);
+}
+
+.wrapper {
+    width: 400px;
+    height: 200px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(19, 107, 151, 0.936);
+    border: 4px solid rgb(128, 69, 3);
+    border-radius: 10px;
+}
+
+.wrapper > p {
+    font-size: 25px;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+.button {
+    background-color: rgb(203, 66, 66);
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    border-radius: 20px;
+    position: absolute;
+    bottom: 20%;
+    cursor: pointer;
+    transform: scale(1);
+    transition: .05s;
+}
+
+.button:hover {
+    box-shadow: -3px 3px 10px ;
+}
+
+.button:active {
+    transform: scale(0.9);
+}
+
+.hide {
+    visibility: hidden;
 }
